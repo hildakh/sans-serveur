@@ -2,6 +2,7 @@ import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
 
 // This is pretty much the same as our get.js except we only pass in the userId in the DynamoDB query call.
+// This API returns an array of note objects as opposed to the get.js function that returns just a single note object.
 export const main = async function(event, context) {
   const params = {
     TableName: process.env.tableName,
