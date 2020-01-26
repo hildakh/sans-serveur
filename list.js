@@ -1,6 +1,7 @@
 import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
 
+// This is pretty much the same as our get.js except we only pass in the userId in the DynamoDB query call.
 export const main = async function(event, context) {
   const params = {
     TableName: process.env.tableName,
