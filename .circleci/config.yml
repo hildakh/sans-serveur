@@ -20,18 +20,20 @@ jobs:
       - run:
           name: Install Serverless CLI
           command: sudo npm i -g serverless
-            
+
       - run:
           name: Install dependencies
           command: |
             npm install
             cd << parameters.service_path >>
             npm install
+
       - run:
           name: Deploy application
           command: |
             cd << parameters.service_path >>
             serverless deploy -s << parameters.stage_name >>
+
       - save_cache:
           paths:
             - node_modules
@@ -46,13 +48,13 @@ workflows:
           service_path: services/users-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
-          
+
       - deploy-service:
           name: Deploy Posts API
           service_path: services/posts-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
-          
+
       - deploy-service:
           name: Deploy Cron Job
           service_path: services/cron-job
